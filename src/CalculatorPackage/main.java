@@ -46,22 +46,32 @@ public class main {
             numEquals.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    int counter = 0; int x = 0; int y = 0; char sign;
+                    int counter = 0; int x = 0; int y = 0; int z = 0; char sign = ' ';
                     String test = textFieldOfSum.getText();
                     for(int i = 0; i < test.length(); i++){
 
                         if(Character.isDigit(test.charAt(i)) && counter == 0){
-                            x =+ Character.getNumericValue(test.charAt(i));
+                            x = Integer.parseInt(Integer.toString(x)+test.charAt(i));
                         }else if(!Character.isDigit(test.charAt(i))){
                             counter++;
                             sign = test.charAt(i);
                         }else{
-                            y =+ Character.getNumericValue(test.charAt(i));
+                            y = Integer.parseInt(Integer.toString(y)+test.charAt(i));
                         }
                     }
-                    int finalSum = x+y;
-
-                    textFieldOfSum.setText(Integer.toString(finalSum));
+                    if(sign == '+'){
+                        int finalSum = x + y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if( sign == '*'){
+                        int finalSum = x * y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if(sign == '/'){
+                        int finalSum = x / y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if(sign == '-'){
+                        int finalSum = x - y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }
 
                 }
             });
@@ -219,16 +229,16 @@ public class main {
                 }
             });
 
-            JButton numDot = new JButton(".");
-            numDot.setBounds(70, 220, 60, 60);
-            panel.add(numDot);
-            numDot.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String digitDot = textFieldOfSum.getText() + numDot.getText();
-                    textFieldOfSum.setText(digitDot);
-                }
-            });
+//            JButton numDot = new JButton(".");
+//            numDot.setBounds(70, 220, 60, 60);
+//            panel.add(numDot);
+//            numDot.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    String digitDot = textFieldOfSum.getText() + numDot.getText();
+//                    textFieldOfSum.setText(digitDot);
+//                }
+//            });
 
             JButton numC = new JButton("C");
             numC.setBounds(10, 40, 60, 60);

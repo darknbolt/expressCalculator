@@ -12,69 +12,18 @@ public class main {
             JFrame frame = new JFrame("Express Calculator");
             frame.setSize(385, 330);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(false);
 
             //Panel
             JPanel panel = new JPanel();
             panel.setLayout(null);
             frame.add(panel);
 
-            //Calculator
-            String operation = "";
-            int a = 0;
-            int b = 0;
-            String sum = "";
-            if (operation == "+") {
-                sum = Integer.toString(a + b);
-            } else if (operation == "-") {
-                sum = Integer.toString(a - b);
-            } else if (operation == "*") {
-                sum = Integer.toString(a * b);
-            } else if (operation == "/") {
-                sum = Integer.toString(a / b);
-            } else {
-                sum = "";
-            }
-
             //Text Field
+            String sum = "";
             JTextField textFieldOfSum = new JTextField(sum);
             textFieldOfSum.setBounds(180, 20, 180, 40);
             panel.add(textFieldOfSum);
-
-            JButton numEquals = new JButton("=");
-            numEquals.setBounds(70, 40, 60, 60);
-            panel.add(numEquals);
-            numEquals.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int counter = 0; int x = 0; int y = 0; int z = 0; char sign = ' ';
-                    String test = textFieldOfSum.getText();
-                    for(int i = 0; i < test.length(); i++){
-
-                        if(Character.isDigit(test.charAt(i)) && counter == 0){
-                            x = Integer.parseInt(Integer.toString(x)+test.charAt(i));
-                        }else if(!Character.isDigit(test.charAt(i))){
-                            counter++;
-                            sign = test.charAt(i);
-                        }else{
-                            y = Integer.parseInt(Integer.toString(y)+test.charAt(i));
-                        }
-                    }
-                    if(sign == '+'){
-                        int finalSum = x + y;
-                        textFieldOfSum.setText(Integer.toString(finalSum));
-                    }else if( sign == '*'){
-                        int finalSum = x * y;
-                        textFieldOfSum.setText(Integer.toString(finalSum));
-                    }else if(sign == '/'){
-                        int finalSum = x / y;
-                        textFieldOfSum.setText(Integer.toString(finalSum));
-                    }else if(sign == '-'){
-                        int finalSum = x - y;
-                        textFieldOfSum.setText(Integer.toString(finalSum));
-                    }
-
-                }
-            });
 
             //Buttons
             JButton num1 = new JButton("1");
@@ -229,16 +178,16 @@ public class main {
                 }
             });
 
-//            JButton numDot = new JButton(".");
-//            numDot.setBounds(70, 220, 60, 60);
-//            panel.add(numDot);
-//            numDot.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    String digitDot = textFieldOfSum.getText() + numDot.getText();
-//                    textFieldOfSum.setText(digitDot);
-//                }
-//            });
+            JButton numDot = new JButton("%");
+            numDot.setBounds(70, 220, 60, 60);
+            panel.add(numDot);
+            numDot.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String digitDot = textFieldOfSum.getText() + numDot.getText();
+                    textFieldOfSum.setText(digitDot);
+                }
+            });
 
             JButton numC = new JButton("C");
             numC.setBounds(10, 40, 60, 60);
@@ -251,6 +200,44 @@ public class main {
                 }
             });
 
+            JButton numEquals = new JButton("=");
+            numEquals.setBounds(70, 40, 60, 60);
+            panel.add(numEquals);
+            numEquals.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int counter = 0; int x = 0; int y = 0; int z = 0; char sign = ' ';
+                    String test = textFieldOfSum.getText();
+                    for(int i = 0; i < test.length(); i++){
+
+                        if(Character.isDigit(test.charAt(i)) && counter == 0){
+                            x = Integer.parseInt(Integer.toString(x)+test.charAt(i));
+                        }else if(!Character.isDigit(test.charAt(i))){
+                            counter++;
+                            sign = test.charAt(i);
+                        }else{
+                            y = Integer.parseInt(Integer.toString(y)+test.charAt(i));
+                        }
+                    }
+                    if(sign == '+'){
+                        int finalSum = x + y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if(sign == '*'){
+                        int finalSum = x * y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if(sign == '/'){
+                        int finalSum = x / y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if(sign == '-'){
+                        int finalSum = x - y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }else if(sign == '%') {
+                        int finalSum = x % y;
+                        textFieldOfSum.setText(Integer.toString(finalSum));
+                    }
+
+                }
+            });
             frame.setVisible(true);
         }
     }
